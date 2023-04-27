@@ -17,7 +17,7 @@ llm_predictor = LLMPredictor(llm=ChatOpenAI(
 
 service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor)
 
-
+# 创建 index 文件(embedding)
 def create_index(filepath, index_name):
     index = get_index_by_index_name(index_name)
     if index is not None:
@@ -29,7 +29,7 @@ def create_index(filepath, index_name):
     index.save_to_disk(get_index_filepath(index_name))
     return index
 
-
+# 从磁盘加载后缀为 json 的index文件，如果不存在就返回 None
 def get_index_by_index_name(index_name):
     index_name = get_name_with_json_extension(index_name)
     if check_index_file_exists(index_name) is False:

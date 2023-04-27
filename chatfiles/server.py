@@ -10,6 +10,8 @@ from file import get_index_path, get_index_name_from_file_path, check_index_file
     get_index_name_without_json_extension, clean_file, check_file_is_compressed, index_path, compress_path, \
     decompress_files_and_get_filepaths, clean_files, check_index_exists
 
+from langquery import create_lang_index, get_answer_from_lang_index, check_index_cache_exists
+
 app = Flask(__name__)
 
 
@@ -30,7 +32,8 @@ def upload_file():
 
             uploaded_file.save(filepath)
 
-            index_name, index = create_llama_index(filepath)
+            #index_name, index = create_llama_index(filepath)
+            index_name, index = create_lang_index(filepath)
 
             clean_file(filepath)
             return make_response(
@@ -58,15 +61,19 @@ def query_from_llama_index():
         message = request.args.get('message')
         index_name = request.args.get('indexName')
         index_type = request.args.get('indexType')
-        if check_index_exists(index_name) is False:
+        #if check_index_exists(index_name) is False:
+        if check_index_cache_exists(index_name) is False:
             return "Index file does not exist", 404
 
         if index_type == 'index':
-            answer = get_answer_from_index(message, index_name)
+            #answer = get_answer_from_index(message, index_name)
+            answer = get_answer_from_lang_index(message, index_name)
         elif index_type == 'graph':
             answer = get_answer_from_graph(message, index_name)
 
-        return make_response(str(answer.response)), 200
+        #return make_response(str(answer.response)), 200
+        print("answer", answer)
+        return make_response(answer), 200
     except Exception as e:
         return "Error: {}".format(str(e)), 500
 

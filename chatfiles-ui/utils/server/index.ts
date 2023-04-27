@@ -4,7 +4,7 @@ import {
   ParsedEvent,
   ReconnectInterval,
 } from 'eventsource-parser';
-import { OPENAI_API_HOST } from '../app/const';
+import { OPENAI_API_HOST, OPENAI_API_KEY } from '../app/const';
 
 export const OpenAIStream = async (
   model: OpenAIModel,
@@ -12,6 +12,8 @@ export const OpenAIStream = async (
   key: string,
   messages: Message[],
 ) => {
+//  console.log(`OpenAIStream OPENAI_API_HOST:${OPENAI_API_HOST}`, )
+//  console.log(`OpenAIStream OPENAI_API_KEY:${OPENAI_API_KEY}`, )
   const res = await fetch(`${OPENAI_API_HOST}/v1/chat/completions`, {
     headers: {
       'Content-Type': 'application/json',
