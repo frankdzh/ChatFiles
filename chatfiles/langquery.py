@@ -221,7 +221,7 @@ def get_chain(store):
 #test('E:/tempdown/xuexi.pdf')
 
 def test_qa():
-    filename = 'E:/tempdown/documents/xuexi.pdf'
+    #filename = 'E:/tempdown/documents/xuexi.pdf'
     filepath = os.path.join(get_index_path(), os.path.basename(filename))
     index_name, index = create_lang_index(filepath)
       
