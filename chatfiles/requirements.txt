@@ -11,3 +11,6 @@ html2text==2020.1.16
 rarfile==4.0
 py7zr==0.20.5
 pytest==7.3.1
+sentence_transformers=2.2.2
+chromadb=0.3.21
+tiktoken=0.3.3

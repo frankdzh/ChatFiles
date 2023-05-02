@@ -88,4 +88,8 @@ if __name__ == '__main__':
         os.makedirs(compress_path)
     if os.environ.get('CHAT_FILES_MAX_SIZE') is not None:
         app.config['MAX_CONTENT_LENGTH'] = int(os.environ.get('CHAT_FILES_MAX_SIZE'))
-    app.run(port=5000, host='0.0.0.0', debug=args.debug)
+
+    app.debug = True if os.environ.get("DEBUG_MODE") == "True" else False
+    print(f'Flask Server Debug mode is {app.debug}')
+
+    app.run(port=5000, host='0.0.0.0')#, debug=args.debug)
