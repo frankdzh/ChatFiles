@@ -7,8 +7,8 @@ export const OPENAI_API_HOST =
 export const OPENAI_API_KEY =
   process.env.OPENAI_API_KEY;
   
-console.log(`const OPENAI_API_HOST:${OPENAI_API_HOST}`, )
-console.log(`const OPENAI_API_KEY:${OPENAI_API_KEY}`, )
+//console.log(`const OPENAI_API_HOST:${OPENAI_API_HOST}`, )
+//console.log(`const OPENAI_API_KEY:${OPENAI_API_KEY}`, )
 
 export const CHAT_FILES_SERVER_HOST =
     process.env.CHAT_FILES_SERVER_HOST || 'http://127.0.0.1:5000';

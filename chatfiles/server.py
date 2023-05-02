@@ -1,5 +1,6 @@
 import argparse
 import os
+import logging
 
 from flask import Flask, request, make_response
 
@@ -49,6 +50,8 @@ def upload_file():
                 {"indexName": get_index_name_without_json_extension(graph_name), "indexType": "graph"}), 200
 
     except Exception as e:
+        # print("Error: {}".format(str(e)))
+        app.logger.error("Error: {}".format(str(e)))
         # cleanup temp file
         if filepath is not None and os.path.exists(filepath):
             os.remove(filepath)
@@ -90,6 +93,13 @@ if __name__ == '__main__':
         app.config['MAX_CONTENT_LENGTH'] = int(os.environ.get('CHAT_FILES_MAX_SIZE'))
 
     app.debug = True if os.environ.get("DEBUG_MODE") == "True" else False
-    print(f'Flask Server Debug mode is {app.debug}')
+    if app.debug is True:
+        # 将日志记录到控制台
+        handler = logging.StreamHandler()
+        handler.setLevel(logging.DEBUG)
+        app.logger.addHandler(handler)
+        app.logger.debug(f'Flask Server Debug mode is {app.debug}')
+    else:
+        print(f'Flask Server Debug mode is {app.debug}')
 
     app.run(port=5000, host='0.0.0.0')#, debug=args.debug)

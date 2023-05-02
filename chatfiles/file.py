@@ -7,9 +7,12 @@ from pathlib import Path
 
 index_path = './documents'
 index_file_dir = Path(index_path)
+#current_dir = os.getcwd()
+#index_file_dir = Path(current_dir, index_path)
 
 compress_path = './decompress'
 compress_file_dir = Path(compress_path)
+#compress_file_dir = Path(current_dir, compress_path)
 
 
 def get_index_name_from_file_path(file_name):
